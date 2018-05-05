@@ -1,10 +1,13 @@
-package morthth.t3c.demo.course.boundary;
+package morthth.t3c.demo.courseDir;
 
 import morthth.t3c.demo.course.control.CourseRepository;
 import morthth.t3c.demo.course.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(path = "/course")
@@ -19,10 +22,18 @@ public class CourseResource {
 
     @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<?> createCourse(@RequestBody Course course) {
-        //TODO crete courses
-        return ResponseEntity.noContent().build();
+        Course savedCourse = courseRepository.save(course);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/").path(savedCourse.getId().toString())
+                .build().toUri();
+
+        //TODO check existence
+        return ResponseEntity.created(location).build();
     }
 
+    @RequestMapping(method = RequestMethod.GET)
     Iterable<Course> getAllCourses() {
         return courseRepository.findAll();
     }
