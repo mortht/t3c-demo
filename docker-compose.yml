@@ -1,4 +1,4 @@
-version: "3"
+version: "3.6"
 services:
   course-db:
     image: mysql:latest
@@ -17,20 +17,19 @@ services:
     depends_on:
       - course-db
     restart: always
-#    deploy:
-#      restart_policy:
-#        condition: on-failure
-#      replicas: 5
-#      resources:
-#        limits:
-#          cpus: "0.1"
-#          memory: 50M
     ports:
       - 8080:8080
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://course-db:3306/t3c-demo"
       SPRING_DATASOURCE_USERNAME: "t3c-demo"
       SPRING_DATASOURCE_PASSWORD: "t3c-demo"
+      T3C_DEMO_EMPLOYEE_SERVICE_URL: "http://employee-service:8080/employee"
+
+  employee-service:
+    image: mortht/t3c-employee-service:latest
+    restart: always
+    ports:
+      - 8081:8080
 
 volumes:
   course-db-data:
