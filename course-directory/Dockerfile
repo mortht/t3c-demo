@@ -1,7 +1,5 @@
 # Use an official OpenJDK as a parent image
 FROM openjdk:8-jre-alpine
-#FROM openjdk:8-jre-slim
-#FROM openjdk:9-jre-slim TODO build with Docker openjdk:9
 
 MAINTAINER Thiemo Morth <thiemo.morth@gmail.com>
 

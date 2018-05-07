@@ -1,12 +1,7 @@
 # Use an official OpenJDK as a parent image
-FROM openjdk:8-jre-alpine
-#FROM openjdk:8-jre-slim
-#FROM openjdk:9-jre-slim TODO build with Docker openjdk:9
+FROM openjdk:9-jre-slim
 
 MAINTAINER Thiemo Morth <thiemo.morth@gmail.com>
-
-# Install curl and remove cache afterwards
-RUN apk --no-cache add curl
 
 # Define an argument to be passed to the docker build
 ARG JAR_FILE
@@ -21,4 +16,4 @@ WORKDIR /app
 EXPOSE 8080
 
 # Run app.py when the container launches
-CMD ["java", "-jar", "/app/app.jar"]
+CMD ["java", "--add-modules", "java.xml.bind", "-jar", "/app/app.jar"]
