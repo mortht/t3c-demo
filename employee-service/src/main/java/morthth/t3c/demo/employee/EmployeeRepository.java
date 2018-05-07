@@ -1,4 +1,4 @@
-package morthth.t3c.demo.employee.control;
+package morthth.t3c.demo.employee;
 
 import morthth.t3c.demo.employee.entity.Employee;
 

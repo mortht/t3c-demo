@@ -1,4 +1,4 @@
-package morthth.t3c.demo.course.boundary;
+package morthth.t3c.demo.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

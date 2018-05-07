@@ -1,4 +1,4 @@
-package morthth.t3c.demo.employee;
+package morthth.t3c.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,14 +1,9 @@
-package morthth.t3c.demo.employee.boundary;
+package morthth.t3c.demo.employee;
 
-import morthth.t3c.demo.employee.control.EmployeeRepository;
 import morthth.t3c.demo.employee.entity.Employee;
-import morthth.t3c.demo.employee.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 @RequestMapping(path = "/employee")
