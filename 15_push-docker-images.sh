@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 pushd course-directory
-./build.sh
+    ./dockerPushImage.sh
 popd
 
 pushd employee-service
-./build.sh
+    ./dockerPushImage.sh
 popd
