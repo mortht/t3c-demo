@@ -24,6 +24,18 @@ public class CourseResource {
         this.employeeService = employeeService;
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    Iterable<Course> getAllCourses() {
+        return courseRepository.findAll();
+    }
+
+    @RequestMapping(path = "{courseId}")
+    ResponseEntity<Course> getCourse(@PathVariable Integer courseId) {
+        return courseRepository.findById(courseId)
+                .map(course -> ResponseEntity.ok(course))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<?> createCourse(@Valid @RequestBody Course course) {
         Employee lecturer = employeeService.findEmployeeById(course.getLecturerId())
@@ -40,17 +52,8 @@ public class CourseResource {
         return ResponseEntity.created(location).build();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    Iterable<Course> getAllCourses() {
-        return courseRepository.findAll();
+    @RequestMapping(path = "{courseId}", method = RequestMethod.DELETE)
+    void deleteCourse(@PathVariable Integer courseId) {
+        courseRepository.deleteById(courseId);
     }
-
-    @RequestMapping(path = "{courseId}")
-    ResponseEntity<Course> getCourse(@PathVariable Integer courseId) {
-        return courseRepository.findById(courseId)
-                .map(course -> ResponseEntity.ok(course))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-
 }
